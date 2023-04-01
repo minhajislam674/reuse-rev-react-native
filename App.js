@@ -12,23 +12,19 @@ import {
   View,
 } from "react-native";
 
-import {
-  useImageDimensions,
-  useDeviceOrientation,
-} from "@react-native-community/hooks";
-import WelcomeScreen from "./app/assets/screens/WelcomeScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
+import ViewImageScreen from "./app/screens/ViewImageScreen";
+import Card from "./app/components/Card";
+import Screen from "./app/components/Screen";
 
 export default function App() {
-  const { landscape } = useDeviceOrientation();
-
-  return <WelcomeScreen />;
+  return (
+    <Screen>
+      <Card
+        title="House items for sale!"
+        subTitle="$100"
+        image={require("./app/assets/furniture.jpg")}
+      />
+    </Screen>
+  );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "grey",
-
-    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-  },
-});
