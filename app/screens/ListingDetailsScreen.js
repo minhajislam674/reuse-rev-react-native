@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Image } from "react-native";
+import { View, Image, StyleSheet } from "react-native";
 
 const ListingDetailsScreen = () => {
   return (
@@ -8,5 +8,7 @@ const ListingDetailsScreen = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({});
 
 export default ListingDetailsScreen;
