@@ -1,44 +1,71 @@
 import React from "react";
-import {
-  SafeAreaView,
-  View,
-  FlatList,
-  StyleSheet,
-  Text,
-  StatusBar,
-} from "react-native";
+import { StyleSheet, View, FlatList } from "react-native";
 
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { ListItem, ListItemSeparator } from "../components/lists";
+import colors from "../config/colors";
+import Icon from "../components/Icon";
+import Screen from "../components/Screen";
 
-import AccountItemComponent from "../components/AccountItemComponent";
-
-const AccountData = [
+const menuItems = [
   {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
     title: "My Listings",
+    icon: {
+      name: "format-list-bulleted",
+      backgroundColor: colors.primary,
+    },
   },
   {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
     title: "My Messages",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Logout",
+    icon: {
+      name: "email",
+      backgroundColor: colors.secondary,
+    },
   },
 ];
 
-const AccountScreen = () => {
+function AccountScreen(props) {
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        data={AccountData}
-        renderItem={({ item }) => <AccountItemComponent title={item.title} />}
-        keyExtractor={(item) => item.id}
+    <Screen style={styles.screen}>
+      <View style={styles.container}>
+        <ListItem
+          title="Minhaj T"
+          subTitle="minhajt@gmail.com"
+          image={require("../assets/minhaj.jpg")}
+        />
+      </View>
+      <View style={styles.container}>
+        <FlatList
+          data={menuItems}
+          keyExtractor={(menuItem) => menuItem.title}
+          ItemSeparatorComponent={ListItemSeparator}
+          renderItem={({ item }) => (
+            <ListItem
+              title={item.title}
+              IconComponent={
+                <Icon
+                  name={item.icon.name}
+                  backgroundColor={item.icon.backgroundColor}
+                />
+              }
+            />
+          )}
+        />
+      </View>
+      <ListItem
+        title="Log Out"
+        IconComponent={<Icon name="logout" backgroundColor="#ffe66d" />}
       />
-    </SafeAreaView>
+    </Screen>
   );
-};
+}
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    backgroundColor: colors.light,
+  },
+  container: {
+    marginVertical: 20,
+  },
+});
 
 export default AccountScreen;

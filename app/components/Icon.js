@@ -1,9 +1,13 @@
 import React from "react";
+import { View } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-import { View, Text, StyleSheet } from "react-native";
-import Ionicons from "@expo/vector-icons/Ionicons";
-
-const Icon = ({ name, size, color = "#fff", backgroundColor }) => {
+function Icon({
+  name,
+  size = 40,
+  backgroundColor = "#000",
+  iconColor = "#fff",
+}) {
   return (
     <View
       style={{
@@ -15,9 +19,9 @@ const Icon = ({ name, size, color = "#fff", backgroundColor }) => {
         alignItems: "center",
       }}
     >
-      <Ionicons name={name} size={24} color={color} />
+      <MaterialCommunityIcons name={name} color={iconColor} size={size * 0.5} />
     </View>
   );
-};
+}
 
 export default Icon;

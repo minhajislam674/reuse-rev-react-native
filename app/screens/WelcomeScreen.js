@@ -1,47 +1,54 @@
 import React from "react";
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  SafeAreaView,
-  ImageBackground,
-} from "react-native";
+import { ImageBackground, StyleSheet, View, Image, Text } from "react-native";
 
-import ButtonComponent from "../components/ButtonComponent";
+import Button from "../components/Button";
 
-const WelcomeScreen = () => {
+function WelcomeScreen(props) {
   return (
-    <View style={styles.container}>
-      <Image
-        style={{
-          width: 100,
-          height: 100,
-          alignSelf: "center",
-          marginTop: 50,
-        }}
-        source={require("../assets/icon-logo.png")}
-      />
-      <Text style={styles.title}>Welcome to the App!</Text>
-      <ButtonComponent title="Login" onPress={() => console.log("TAP")} />
-      <ButtonComponent title="Register" onPress={() => console.log("TAP")} />
-    </View>
+    <ImageBackground
+      blurRadius={10}
+      style={styles.background}
+      source={require("../assets/background-3.jpg")}
+    >
+      <View style={styles.logoContainer}>
+        <Image
+          style={styles.logo}
+          source={require("../assets/icon-logo.png")}
+        />
+        <Text style={styles.tagline}>Welcome to the app</Text>
+      </View>
+      <View style={styles.buttonsContainer}>
+        <Button title="Login" />
+        <Button title="Register" color="secondary" />
+      </View>
+    </ImageBackground>
   );
-};
-export default WelcomeScreen;
+}
 
 const styles = StyleSheet.create({
-  container: {
+  background: {
     flex: 1,
-  },
-  title: {
-    fontSize: 25,
-    color: "black",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  contentCenter: {
-    justifyContent: "center",
+    justifyContent: "flex-end",
     alignItems: "center",
   },
+  buttonsContainer: {
+    padding: 20,
+    width: "100%",
+  },
+  logo: {
+    width: 100,
+    height: 100,
+  },
+  logoContainer: {
+    position: "absolute",
+    top: 70,
+    alignItems: "center",
+  },
+  tagline: {
+    fontSize: 25,
+    fontWeight: "600",
+    paddingVertical: 20,
+  },
 });
+
+export default WelcomeScreen;
